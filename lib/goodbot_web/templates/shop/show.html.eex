@@ -1,0 +1,13 @@
+
+<%# in this template, we simply render the shop variables extracted in the corresponding view %>
+<div>
+  <img src="<%= logo_url(@shop) %>">
+  <h4>
+    <%= name(@shop) %>
+  </h4>
+  <div>
+    <h6>Discount</h6>
+    <%= discount(@shop) %>
+  </div>
+</div>
+
