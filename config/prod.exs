@@ -21,8 +21,6 @@ config :goodbot, GoodbotWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
-config :goodbot, :goodbot, public_url: "https://f4eb5a19.ngrok.io"
-
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
