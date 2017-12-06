@@ -8,7 +8,7 @@ defmodule Goodbot.Handler.Event do
 	alias Goodbot.Handler.Message
 
 	@doc """
-	This method is called if the messaging_object includes a message field.
+	This function is called if the messaging_object includes a message field.
 	We can handle it using the message handler.
   """
 	def handle(%{"message" => message}, state), do: Message.handle(message, state)

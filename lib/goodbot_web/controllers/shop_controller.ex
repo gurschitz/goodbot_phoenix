@@ -7,7 +7,7 @@ defmodule GoodbotWeb.ShopController do
 	alias Goodbot.Apis
 
 	@doc """
-  This method extracts the id out of the params using pattern matching,
+  This function extracts the id out of the params using pattern matching,
   fetches the shop using this id and and calls render on the connection with the respective params
   """
   def show(conn, %{"id" => id}) do

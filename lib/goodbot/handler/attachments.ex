@@ -8,8 +8,8 @@ defmodule Goodbot.Handler.Attachments do
 	alias Goodbot.Scenarios.FindShops
 
 	@doc """
-	This is the handle method of the attachments handler.
-  If the attachments array is a list and is not empty, this method will match.
+	This is the handle function of the attachments handler.
+  If the attachments array is a list and is not empty, this function will match.
   The list is decomposed into the first attachment (head) and the rest (tail) of the attachment list.
   """
 	def handle(attachments = [attachment | rest], state) when is_list(attachments) and length(attachments) > 0 do
@@ -21,7 +21,7 @@ defmodule Goodbot.Handler.Attachments do
 	end
 
 	@doc """
-	If we're dealing with a location attachment, then this method will match the attachment map.
+	If we're dealing with a location attachment, then this function will match the attachment map.
 	we extract the coordinates out of the attachment and run the FindShops Scenario
   """
 	defp handle_attachment(%{"payload" => %{"coordinates" => coordinates}, "type" => "location"}, state) do

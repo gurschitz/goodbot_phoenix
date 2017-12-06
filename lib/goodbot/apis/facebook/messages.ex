@@ -13,11 +13,11 @@ defmodule Goodbot.Apis.Facebook.Messages do
 	@access_token Application.get_env(:goodbot, :facebook)[:page_access_token]
 
 	@doc """
-	This is the method that will send a given message to the user with the given psid.
+	This is the function that will send a given message to the user with the given psid.
   """
 	def send(message, psid) do
     # We build up the json structure 
-    # using the psid and the message that we put inside a map
+    # using the psid and the message that we put inside a ma
     # and finally encode it to json
 		json = %{
 			recipient: %{

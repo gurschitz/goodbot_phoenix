@@ -4,9 +4,9 @@ defmodule Goodbot.Handler.DefaultHandler do
   """
 
 	@doc """
-	This macro defines a fallback method that will be called if we get any input that we don't handle yet.
+	This macro defines a fallback function that will be called if we get any input that we don't handle yet.
 	It can be included using @before_compile in any handler module, so that it will be defined at the very end
-	of the module and therefore act as a fallback method in the respective module
+	of the module and therefore act as a fallback function in the respective module
   """
 	defmacro __before_compile__(_opts) do
     quote do

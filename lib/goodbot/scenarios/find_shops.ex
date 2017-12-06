@@ -10,7 +10,7 @@ defmodule Goodbot.Scenarios.FindShops do
 	alias Goodbot.Apis
 
   @doc """
-  This method runs the scenario by taking a Map with lat and long properties as well as the state
+  This function runs the scenario by taking a Map with lat and long properties as well as the state
   It uses the latitude and the longitude then to call the Goodbag Branches API Wrapper 
   to get all branches near those coordinates. Finally, the result is turned into a 
   generic template and then sent using the Facebook Messages Api Endpoint
@@ -27,12 +27,12 @@ defmodule Goodbot.Scenarios.FindShops do
 	end
 
   @doc """
-  This helper method gets the goodbot public url and uses URI.parse on it so we get a URI Map
+  This helper function gets the goodbot public url and uses URI.parse on it so we get a URI Map
   """
   defp goodbot_public_uri, do: Application.get_env(:goodbot, :goodbot)[:public_url] |> URI.parse
 
   @doc """
-  This method builds the generic template out of a shop list
+  This function builds the generic template out of a shop list
   """
   defp build_generic_template(shops) do
   	elements = shops
@@ -42,7 +42,7 @@ defmodule Goodbot.Scenarios.FindShops do
   end
 
   @doc """
-  This helper method builds an element for a generic template out of a single shop
+  This helper function builds an element for a generic template out of a single shop
   """
   defp map_shop_to_generic_element(%{"id" => id, "name" => title, "logo_url" => %{"url" => image_url}, "discount_en" => subtitle}) do
     button_url = GoodbotWeb.Router.Helpers.shop_url(goodbot_public_uri(), :show, id)

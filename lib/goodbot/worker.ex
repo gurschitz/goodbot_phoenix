@@ -11,7 +11,7 @@ defmodule Goodbot.Worker do
 	alias Goodbot.Handler
  
 	@doc """
-	A wrapper method that will start and initialize the GenServer. 
+	A wrapper function that will start and initialize the GenServer. 
 	The passed event is passed on as a initalization object.
   """
 	def start_link(event) when is_map(event) do
@@ -34,23 +34,23 @@ defmodule Goodbot.Worker do
 	end
 
 	@doc """
-	This method just wraps the GenServer.cast call. We could use the same code outside of this module.
+	This function just wraps the GenServer.cast call. We could use the same code outside of this module.
 	We use a cast in this case instead of a call, since we don't expect a return value from the GenServer. 
 	We simply want "inform" GenServer of the event that has happened.
   """
 	def run(worker), do: GenServer.cast(worker, {:run})
 
-	# The following method is the callback that needs to be implemented
+	# The following function is the callback that needs to be implemented
 	# in order to understand cast calls . Te callback itself called by the GenServer module
 	#
-	# All we do here is to extract the messaging object from the state (that was initially set in the init method)
+	# All we do here is to extract the messaging object from the state (that was initially set in the init function)
 	# and pass it into the event handler that will decide what to do with it.
 
 	@doc """
-	The following method is the callback that needs to be implemented in order to understand cast calls.
+	The following function is the callback that needs to be implemented in order to understand cast calls.
 	The callback itself called by the GenServer module.
 
-	All we do here is to extract the messaging object from the state (that was initially set in the init method) and pass it into the event handler that will decide what to do with it.
+	All we do here is to extract the messaging object from the state (that was initially set in the init function) and pass it into the event handler that will decide what to do with it.
   """
   def handle_cast({:run}, state = %{event: event}) do
   	Goodbot.Handler.Event.handle(event, state)

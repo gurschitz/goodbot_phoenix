@@ -21,15 +21,15 @@ defmodule GoodbotWeb.Endpoint do
   plug Plug.Logger
 
   plug Plug.Parsers,
-    parsers: [:urlencoded, :multipart, GoodbotWeb.Parsers.JSON_WITH_VERIFICATION],
+    parsers: [:urlencoded, :multipart, GoodbotWeb.Parsers.JSON_WITH_VALIDATION],
     pass: ["*/*"],
     json_decoder: Poison,
     # Here we are passing custom options to the Plug.Parsers plug
-    # These options will be passed to our custom JSON_WITH_VERIFICATION parser
+    # These options will be passed to our custom JSON_WITH_VALIDATION parser
     signature_header_field: "x-hub-signature",
     prefix: "sha1=",
     secret: Application.get_env(:goodbot, :facebook)[:app_secret],
-    verify_request_path: "/api/webhook"
+    validate_request_path: "/api/webhook"
 
   plug Plug.MethodOverride
   plug Plug.Head

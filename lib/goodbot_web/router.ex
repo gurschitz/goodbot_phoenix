@@ -39,6 +39,6 @@ defmodule GoodbotWeb.Router do
     # The name of the endpoint doesn't matter, as it can be set in the 
     # app settings under https://developers.facebook.com, but we'll stick to /webhook
     get "/webhook", WebhookController, :verify
-    post "/webhook", WebhookController, :handle_message_connection
+    post "/webhook", WebhookController, :handle_event
   end
 end

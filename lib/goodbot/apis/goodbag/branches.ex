@@ -7,18 +7,18 @@ defmodule Goodbot.Apis.Goodbag.Branches do
   @goodbag_public_url Application.get_env(:goodbot, :goodbag)[:public_url]
 
 	@doc """
-	This method allows to get all shop near given lat and long coordinates
+	This function allows to get all shop near given lat and long coordinates
 	with an optional limit parameter, that defaults to 10.
   """
 	def get_all(lat, long, limit \\ 10), do: get "#{base_url()}?lat=#{lat}&long=#{long}&limit=#{limit}" 
 
 	@doc """
-	This method allows to retrieve one shop using the given id.
+	This function allows to retrieve one shop using the given id.
   """
 	def get_one(id), do: get "#{base_url()}/#{id}" 
 
 	@doc """
-	This helper method takes a url, executes the get! method from HTTPoison on it and decodes the response.
+	This helper function takes a url, executes the get! function from HTTPoison on it and decodes the response.
   """
 	defp get(url) do
 		# Error handling with HTTPoison is really simple:
