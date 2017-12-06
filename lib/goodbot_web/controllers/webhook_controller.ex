@@ -4,7 +4,7 @@ defmodule GoodbotWeb.WebhookController do
   """
   
   use GoodbotWeb, :controller
-  alias Goodbot.Handler.Event
+  alias Goodbot.Worker
 
   # We're setting the verify_token as a constant
   @verify_token Application.get_env(:goodbot, :facebook)[:verify_token]
@@ -46,10 +46,14 @@ defmodule GoodbotWeb.WebhookController do
   According to facebook's documentation, the list will only ever have one element,
   so we can safely pattern match the first element out of it and discard the rest 
   """
-  defp handle_entry(%{"messaging" => [messaging_object | _rest]}) do
-  	# we send our messaging object to the Event handler
-  	{:ok, event} = Event.start_link(messaging_object)
-  	event |> Event.handle
+  defp handle_entry(%{"messaging" => [event | _rest]}) do
+  	# We initialize our worker with the event
+  	{:ok, worker_pid} = Worker.start_link(event)
+
+    # We need to run the run method of the Worker module and pass the worker_pid
+    # that we got above when we initialized the worker. This will make the 
+    # respective cast call to our GenServer and effectively run the code that handles our event
+  	Worker.run(worker_pid)
   end
 
   @doc """
