@@ -24,7 +24,7 @@ defmodule Goodbot.Apis.Facebook.Messages do
 				id: psid
 			},
 			message: message
-		} |> Poison.encode!
+		} |> Poison.encode! |> IO.inspect
 
 		# Error handling with HTTPoison is really simple:
 		# We just execute the request and pattern match the tagged response

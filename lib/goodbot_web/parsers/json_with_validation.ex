@@ -19,10 +19,11 @@ defmodule GoodbotWeb.Parsers.JSON_WITH_VALIDATION do
     # We need to extract the validate_request_path from the options
     # This will be the path that we validate the request for.
     validate_request_path = opts[:validate_request_path]
+    validate_request_method = opts[:validate_request_method]
 
     case read_body(conn, opts) do
 
-      {:ok, body, %Plug.Conn{request_path: ^validate_request_path}} ->
+      {:ok, body, %Plug.Conn{request_path: ^validate_request_path, method: ^validate_request_method}} ->
         # First we extract the passed signature from the signature header field
         passed_signature = extract_passed_signature(conn, opts)
 
@@ -33,7 +34,7 @@ defmodule GoodbotWeb.Parsers.JSON_WITH_VALIDATION do
         # We need to put the result of the validation into the private field of conn
         # so we can use that later in the controller. put_priate is a function of
         # Plug.Conn and it returns the modified conn, which we can pipe to the decode function
-        put_private(conn, :valid, valid)
+        put_private(conn, :facebook_request_valid, valid)
         |> decode(body)
       {:ok, body, conn} -> decode(conn, body)
       # If read_body returnes more, it means that the passed body is too large

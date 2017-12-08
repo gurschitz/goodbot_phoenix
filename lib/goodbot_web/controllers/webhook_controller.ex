@@ -35,8 +35,10 @@ defmodule GoodbotWeb.WebhookController do
   This function pattern matches the params to have the object of type page 
   and it extracts the entry into the entries variable
   """
-  def handle_event(conn = %Plug.Conn{private: %{valid: true}}, %{"object" => "page", "entry" => entries}) do
-  	# We need to iterate over the entries (there might be more, facebook does batch requests)
+  def handle_event(conn = %Plug.Conn{private: %{facebook_request_valid: true}}, %{"object" => "page", "entry" => entries}) do
+    
+    # Iterating over the entries, as there might be more, 
+    # since Facebook eventually does batch requests.
   	entries
     |> Enum.each(&(handle_entry(&1)))
 

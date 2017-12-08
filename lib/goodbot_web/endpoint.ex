@@ -29,7 +29,8 @@ defmodule GoodbotWeb.Endpoint do
     signature_header_field: "x-hub-signature",
     prefix: "sha1=",
     secret: Application.get_env(:goodbot, :facebook)[:app_secret],
-    validate_request_path: "/api/webhook"
+    validate_request_path: "/api/webhook",
+    validate_request_method: "POST"
 
   plug Plug.MethodOverride
   plug Plug.Head

@@ -26,6 +26,7 @@ defmodule GoodbotWeb.Router do
     # Here we define the path for displaying a single shop 
     # the :id of the shop is parameterized and can be replaced by an arbitrary value when calling the path,
     # i.e. /shops/1
+    get "/shops/test", ShopController, :test
     get "/shops/:id", ShopController, :show
   end
 

@@ -31,7 +31,8 @@ config :goodbot, GoodbotWeb.Endpoint,
 # different ports.
 
 # Set the public url so that the webviews will work 
-config :goodbot, :goodbot, public_url: "localhost"
+# config :goodbot, :goodbot, public_url: "localhost"
+config :goodbot, :goodbot, public_url: "https://f4eb5a19.ngrok.io"
 
 # Watch static and templates for browser reloading.
 config :goodbot, GoodbotWeb.Endpoint,

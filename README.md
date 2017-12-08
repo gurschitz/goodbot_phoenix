@@ -19,7 +19,7 @@ In order to set everything up on your local machine in development, be sure to d
 
 To start the Phoenix server:
 
-* cd into the cloned path `cd /path/to/goodbot_phoenix`.
+	* cd into the cloned path `cd /path/to/goodbot_phoenix`.
   * Install dependencies with `mix deps.get`
   * Install Node.js dependencies with `cd assets && npm install`
   * Start Phoenix endpoint with `mix phx.server`
